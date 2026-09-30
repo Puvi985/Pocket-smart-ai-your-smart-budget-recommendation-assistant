@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PocketSmart AI</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f5f8fc;
+    color:#172b4d;
+}
+
+/* NAVBAR */
+.navbar{
+    background:#123c67;
+    color:white;
+    padding:18px 7%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.nav-links a:hover{
+    color:#b9d9ff;
+}
+
+/* HERO */
+.hero{
+    min-height:520px;
+    background:linear-gradient(135deg,#123c67,#2865a0);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:50px 20px;
+}
+
+.hero-content{
+    max-width:800px;
+}
+
+.hero h1{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.hero h2{
+    font-size:28px;
+    font-weight:normal;
+    margin-bottom:20px;
+}
+
+.hero p{
+    line-height:1.7;
+    color:#e0edfa;
+    margin-bottom:30px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+}
+
+.btn{
+    padding:13px 28px;
+    border-radius:30px;
+    border:none;
+    cursor:pointer;
+    font-size:15px;
+    text-decoration:none;
+    display:inline-block;
+}
+
+.primary{
+    background:#0d9df0;
+    color:white;
+}
+
+.secondary{
+    background:white;
+    color:#174b78;
+}
+
+/* SECTION */
+.section{
+    padding:75px 7%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.section-title h2{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:#68798d;
+}
+
+/* CARDS */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,.09);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-7px);
+}
+
+.card-top{
+    background:#2865a0;
+    color:white;
+    padding:25px;
+    text-align:center;
+    font-size:40px;
+}
+
+.card-body{
+    padding:25px;
+}
+
+.card-body h3{
+    margin-bottom:12px;
+}
+
+.card-body p{
+    color:#66788b;
+    line-height:1.6;
+    font-size:14px;
+}
+
+.card button{
+    margin-top:20px;
+    padding:10px 20px;
+    border:none;
+    border-radius:20px;
+    background:#2865a0;
+    color:white;
+    cursor:pointer;
+}
+
+/* PLANNER */
+.planner{
+    background:#eaf3fb;
+}
+
+.planner-box{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 5px 25px rgba(0,0,0,.08);
+}
+
+.input-group{
+    margin-bottom:18px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:7px;
+    font-weight:bold;
+}
+
+.input-group input,
+.input-group select{
+    width:100%;
+    padding:13px;
+    border:1px solid #ccd7e2;
+    border-radius:8px;
+    font-size:15px;
+}
+
+.calculate{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#123c67;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.result{
+    margin-top:25px;
+    padding:20px;
+    background:#eef7ff;
+    border-radius:10px;
+    display:none;
+}
+
+.result h3{
+    margin-bottom:12px;
+}
+
+.result p{
+    margin:7px 0;
+}
+
+/* TESTIMONIALS */
+.testimonials{
+    background:white;
+}
+
+.testimonial-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.testimonial{
+    padding:30px;
+    border-radius:12px;
+    background:#f5f8fc;
+}
+
+.stars{
+    color:#f6b800;
+    margin-bottom:15px;
+}
+
+.testimonial p{
+    color:#617286;
+    line-height:1.6;
+}
+
+/* FOOTER */
+footer{
+    background:#123c67;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+
+    .navbar{
+        padding:15px 20px;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        min-height:480px;
+    }
+
+    .hero h1{
+        font-size:38px;
+    }
+
+    .hero h2{
+        font-size:21px;
+    }
+
+    .cards,
+    .testimonial-grid{
+        grid-template-columns:1fr;
+    }
+
+    .section{
+        padding:55px 20px;
+    }
+
+    .buttons{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .btn{
+        width:220px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar">
+
+    <div class="logo">
+        PocketSmart
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#planners">Planners</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#planner">Get Started</a></li>
+    </ul>
+
+</nav>
+
+
+<!-- HOME -->
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h1>PocketSmart</h1>
+
+        <h2>
+            AI-Powered Budget Planning for Everyday Needs
+        </h2>
+
+        <p>
+            Make smarter financial decisions with personalized
+            budget recommendations for your everyday needs and
+            special occasions. Our AI helps you plan and save
+            money.
+        </p>
+
+        <div class="buttons">
+
+            <a href="#planner" class="btn primary">
+                Get Started
+            </a>
+
+            <a href="#planners" class="btn secondary">
+                Learn More
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PLANNERS -->
+<section class="section" id="planners">
+
+    <div class="section-title">
+
+        <h2>Our Smart Budget Planners</h2>
+
+        <p>
+            Select a planner and get personalized budget recommendations.
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="card-top">
+                🏠
+            </div>
+
+            <div class="card-body">
+
+                <h3>Home Interior Budget Planner</h3>
+
+                <p>
+                    Plan your home interior budget by
+                    entering your available budget and
+                    getting smart spending suggestions.
+                </p>
+
+                <button onclick="selectPlanner('Home Interior')">
+                    Use Planner
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-top">
+                🎉
+            </div>
+
+            <div class="card-body">
+
+                <h3>Party Budget Planner</h3>
+
+                <p>
+                    Plan your perfect party with smart
+                    budget allocation for food, decoration,
+                    venue and entertainment.
+                </p>
+
+                <button onclick="selectPlanner('Party')">
+                    Use Planner
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-top">
+                💎
+            </div>
+
+            <div class="card-body">
+
+                <h3>Jewelry Budget Planner</h3>
+
+                <p>
+                    Create a smart jewelry budget and
+                    divide your spending between jewelry
+                    categories.
+                </p>
+
+                <button onclick="selectPlanner('Jewelry')">
+                    Use Planner
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- BUDGET PLANNER -->
+<section class="section planner" id="planner">
+
+    <div class="section-title">
+
+        <h2>Smart Budget Planner</h2>
+
+        <p>
+            Enter your budget and let PocketSmart calculate
+            a recommended spending plan.
+        </p>
+
+    </div>
+
+
+    <div class="planner-box">
+
+        <div class="input-group">
+
+            <label>
+                Select Planner
+            </label>
+
+            <select id="type">
+
+                <option value="Home Interior">
+                    Home Interior
+                </option>
+
+                <option value="Party">
+                    Party
+                </option>
+
+                <option value="Jewelry">
+                    Jewelry
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>
+                Your Budget (₹)
+            </label>
+
+            <input
+                type="number"
+                id="budget"
+                placeholder="Example: 50000"
+            >
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>
+                Priority
+            </label>
+
+            <select id="priority">
+
+                <option value="balanced">
+                    Balanced
+                </option>
+
+                <option value="saving">
+                    Save More
+                </option>
+
+                <option value="premium">
+                    Premium
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            class="calculate"
+            onclick="calculateBudget()">
+
+            Generate Smart Plan
+
+        </button>
+
+
+        <div class="result" id="result">
+
+            <h3>🤖 PocketSmart Recommendation</h3>
+
+            <p id="r1"></p>
+            <p id="r2"></p>
+            <p id="r3"></p>
+            <p id="r4"></p>
+            <p id="r5"></p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials" id="testimonials">
+
+    <div class="section-title">
+
+        <h2>What Our Users Say</h2>
+
+        <p>
+            Simple planning for smarter spending.
+        </p>
+
+    </div>
+
+
+    <div class="testimonial-grid">
+
+        <div class="testimonial">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <p>
+                "PocketSmart made it very easy for me
+                to plan my home renovation budget."
+            </p>
+
+        </div>
+
+
+        <div class="testimonial">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <p>
+                "The party planner helped me divide
+                my budget without overspending."
+            </p>
+
+        </div>
+
+
+        <div class="testimonial">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <p>
+                "A simple and useful way to organize
+                my spending."
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <p>
+        © 2026 PocketSmart AI. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script>
+
+function selectPlanner(name){
+
+    document.getElementById("type").value = name;
+
+    document.getElementById("planner")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+}
+
+
+function calculateBudget(){
+
+    const budget =
+        Number(document.getElementById("budget").value);
+
+    const type =
+        document.getElementById("type").value;
+
+    const priority =
+        document.getElementById("priority").value;
+
+
+    if(!budget || budget <= 0){
+
+        alert("Please enter a valid budget.");
+
+        return;
+    }
+
+
+    let main;
+    let secondary;
+    let emergency;
+    let savings;
+    let description;
+
+
+    if(priority === "saving"){
+
+        main = budget * 0.50;
+        secondary = budget * 0.25;
+        emergency = budget * 0.10;
+        savings = budget * 0.15;
+
+    }
+    else if(priority === "premium"){
+
+        main = budget * 0.65;
+        secondary = budget * 0.25;
+        emergency = budget * 0.05;
+        savings = budget * 0.05;
+
+    }
+    else{
+
+        main = budget * 0.55;
+        secondary = budget * 0.25;
+        emergency = budget * 0.10;
+        savings = budget * 0.10;
+
+    }
+
+
+    if(type === "Home Interior"){
+
+        description =
+        "Main items: furniture, paint, lighting and decor.";
+
+    }
+
+    else if(type === "Party"){
+
+        description =
+        "Main items: venue, food, decoration and entertainment.";
+
+    }
+
+    else{
+
+        description =
+        "Main items: jewelry purchase, making charges and accessories.";
+
+    }
+
+
+    document.getElementById("r1").innerHTML =
+        "<b>Planner:</b> " + type;
+
+    document.getElementById("r2").innerHTML =
+        "<b>Recommended main spending:</b> ₹" +
+        Math.round(main).toLocaleString("en-IN");
+
+    document.getElementById("r3").innerHTML =
+        "<b>Secondary expenses:</b> ₹" +
+        Math.round(secondary).toLocaleString("en-IN");
+
+    document.getElementById("r4").innerHTML =
+        "<b>Emergency buffer:</b> ₹" +
+        Math.round(emergency).toLocaleString("en-IN");
+
+    document.getElementById("r5").innerHTML =
+        "<b>Savings:</b> ₹" +
+        Math.round(savings).toLocaleString("en-IN") +
+        "<br><br>" + description;
+
+
+    document.getElementById("result").style.display =
+        "block";
+
+}
+
+</script>
+
+</body>
+</html>
